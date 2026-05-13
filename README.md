@@ -1,89 +1,87 @@
-# Análisis Exploratorio de Datos — Retail Sales Dataset
+# Retail Sales EDA — Análisis Exploratorio de Ventas
 
 **Proyecto de portafolio | Python · Pandas · Seaborn · Scipy**
 
 ---
 
-## Descripción
+## ¿Qué problema resuelve este análisis?
 
-Análisis exploratorio completo sobre un dataset de **5.000 registros de ventas retail** con 24 variables. El objetivo fue extraer información estratégica para la toma de decisiones comerciales, aplicando tres técnicas fundamentales:
+Una empresa retail tiene 5.000 registros de órdenes de venta y necesita responder preguntas concretas antes de tomar decisiones comerciales:
 
-- **Estadística descriptiva** — tendencia central, dispersión y posición
-- **Detección y tratamiento de outliers** — método IQR con análisis comparativo
-- **Análisis de correlación** — Pearson y Spearman con heatmaps
+- ¿Qué categorías de producto generan el mayor volumen de órdenes?
+- ¿Existen pedidos atípicos que distorsionen las métricas de rentabilidad?
+- ¿Qué variables están correlacionadas y cuáles son redundantes para futuros modelos?
+- ¿Cómo se distribuye el uso de los canales de envío?
 
----
-
-## Hallazgos principales
-
-- Las ventas muestran **alta heterogeneidad**: el valor total por orden varía entre clientes pequeños y grandes cuentas corporativas, evidenciando una cartera diversificada.
-- Se detectaron outliers en variables monetarias consistentes con pedidos corporativos de alto volumen. Tras la limpieza, la desviación estándar se redujo significativamente en todas las variables.
-- **Office Supplies** concentra el 79% de las órdenes, mientras que Furniture representa apenas el 3.4% — señal clara de priorización de recursos.
-- El canal **Regular Air** domina con el 84.7% del volumen de envíos, sugiriendo oportunidad de optimización logística.
-- La correlación entre variables de precio y totales de orden confirma redundancia estructural: útil para simplificar modelos predictivos futuros.
+Este análisis responde esas preguntas con estadística descriptiva, detección de outliers y análisis de correlación.
 
 ---
 
-## Tecnologías utilizadas
+## Hallazgos clave
 
-| Librería | Uso |
-|:---------|:----|
-| `pandas` | Carga, limpieza y transformación de datos |
-| `numpy` | Cálculos estadísticos y manejo de arrays |
-| `matplotlib` | Visualizaciones base y personalización |
-| `seaborn` | Heatmaps y gráficos estadísticos |
-| `scipy` | Soporte estadístico |
+**Concentración de producto**
+- **Office Supplies** representa el **79% de las órdenes**, mientras que Furniture apenas alcanza el 3.4%. El negocio depende estructuralmente de una sola categoría.
+
+**Pedidos atípicos**
+- Se detectaron outliers en todas las variables monetarias, consistentes con cuentas corporativas de alto volumen. Tras su tratamiento, la desviación estándar se redujo significativamente — las métricas promedio pasaron a reflejar el comportamiento real de la mayoría de clientes.
+
+**Logística**
+- El canal **Regular Air** concentra el **84.7% de los envíos**. La dependencia de un solo canal representa un riesgo operativo y una oportunidad de negociación de tarifas.
+
+**Correlación entre variables**
+- Las variables de precio unitario, descuento y total de orden están altamente correlacionadas. Esto indica redundancia estructural útil para simplificar cualquier modelo predictivo futuro.
 
 ---
 
-## Estructura del proyecto
+## Visualizaciones
 
-```
-├── archive/
-│   └── data.csv                          # Dataset original (Retail Sales)
-├── EDA_RetailSales_DanielVargas.ipynb    # Notebook principal con análisis completo
-└── README.md
-```
+**Distribución de variables clave**
+
+![Distribución de variables clave](distribucion_variables_clave.png)
+
+**Detección de outliers — antes y después del tratamiento**
+
+![Boxplots antes](boxplots_antes_outliers.png)
+![Boxplots después](boxplots_despues_outliers.png)
+
+**Mapa de correlación (Pearson)**
+
+![Heatmap Pearson](heatmap_pearson.png)
+
+---
+
+## Metodología
+
+| Etapa | Técnica aplicada |
+|:------|:-----------------|
+| Limpieza | Conversión de tipos, validación de nulos y duplicados |
+| Estadística descriptiva | Media, mediana, moda, desv. estándar, varianza, Q1, Q3, IQR |
+| Outliers | Método IQR — detección, cuantificación y eliminación |
+| Correlación | Matrices Pearson y Spearman, heatmaps comparativos |
+
+---
+
+## Tecnologías
+
+`Python` · `Pandas` · `NumPy` · `Matplotlib` · `Seaborn` · `Scipy`
 
 ---
 
 ## Cómo ejecutar
 
-1. Clona el repositorio:
-   ```bash
-   git clone https://github.com/TU_USUARIO/eda-retail-sales.git
-   cd eda-retail-sales
-   ```
+```bash
+git clone https://github.com/Danvargast/eda-retail-sales.git
+cd eda-retail-sales
+pip install pandas numpy matplotlib seaborn scipy jupyter
+jupyter notebook EDA_RetailSales_DanielVargas.ipynb
+```
 
-2. Instala las dependencias:
-   ```bash
-   pip install pandas numpy matplotlib seaborn scipy jupyter
-   ```
-
-3. Abre el notebook:
-   ```bash
-   jupyter notebook EDA_RetailSales_DanielVargas.ipynb
-   ```
-
-4. Ejecuta todas las celdas: `Kernel → Restart & Run All`
-
----
-
-## Estructura del notebook
-
-| Sección | Contenido |
-|:--------|:----------|
-| **1. Carga y Exploración** | Dimensiones, tipos de variables, calidad de datos, limpieza |
-| **2. Estadística Descriptiva** | Media, mediana, moda, desv. estándar, varianza, Q1, Q3, IQR para 10 variables numéricas + frecuencias para 5 variables categóricas |
-| **3. Detección de Outliers** | Método IQR, boxplots antes/después, análisis comparativo |
-| **4. Análisis de Correlación** | Matrices Pearson y Spearman, heatmaps, propuesta de reducción de variables |
-| **5. Conclusiones** | Hallazgos de negocio, limitaciones, consideraciones éticas |
+Ejecuta todas las celdas con `Kernel → Restart & Run All`.
 
 ---
 
 ## Autor
 
-**Daniel Vargas**
-Analista de Datos | Python · SQL · Visualización · EDA
+**Daniel Vargas** · Analista de Datos
 
-> Disponible para proyectos freelance de análisis de datos, limpieza de datasets y generación de reportes con insights de negocio.
+> Disponible para proyectos freelance de análisis de datos, limpieza de datasets y reportes con insights de negocio.
